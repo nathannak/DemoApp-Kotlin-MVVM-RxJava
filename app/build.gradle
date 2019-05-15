@@ -1,0 +1,108 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: "kotlin-kapt"
+
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "demoapp.imgur"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        android.defaultConfig.vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+}
+
+def supportVersion = '28.0.0'
+def retrofitVersion = '2.3.0'
+def rxJavaVersion = '2.0.1'
+def butterKnifeVersion = '8.8.1'
+def daggerVersion = '2.16'
+def okHttpVersion = '3.12.1'
+def rxBindingVersion = '2.2.0'
+def glideVersion = '4.9.0'
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    //suport libraries
+    implementation "com.android.support:appcompat-v7:${supportVersion}"
+    implementation "com.android.support:recyclerview-v7:${supportVersion}"
+    implementation "com.android.support:design:${supportVersion}"
+    implementation "com.android.support:customtabs:${supportVersion}"
+    implementation "com.android.support:cardview-v7:${supportVersion}"
+    implementation "com.android.support:support-v4:${supportVersion}"
+
+    //constraint layout
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
+    //lifecycler extension
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+
+    //okhttp
+    implementation "com.squareup.okhttp3:okhttp:${okHttpVersion}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
+
+    //rxjava
+    implementation "io.reactivex.rxjava2:rxandroid:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+
+    //rxbinding
+    implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:${rxBindingVersion}"
+
+    //butterknife
+    implementation "com.jakewharton:butterknife:$butterKnifeVersion"
+    kapt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
+
+    //dagger2
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+
+    annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //square images
+    implementation 'com.litedevs:oriented-image-view:1.0'
+
+    //glide
+    implementation "com.github.bumptech.glide:glide:${glideVersion}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${glideVersion}"
+
+    //pagination
+    implementation 'android.arch.paging:runtime:1.0.1'
+
+}
+repositories {
+    mavenCentral()
+}
